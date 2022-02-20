@@ -1,5 +1,8 @@
 import pygame
 import math
+import os
+
+os.chdir("./Solar System")
 
 pygame.init()
 
@@ -16,6 +19,10 @@ RED = (188, 39, 50)
 DARK_GREY = (80, 78, 81)
 
 FONT = pygame.font.SysFont("comicsans", 16)
+
+bg = pygame.image.load("images/space.png").convert()
+
+bg.set_alpha(128)
 
 class Planet():
 
@@ -132,6 +139,8 @@ def main():
 
         clock.tick(60)
         WIN.fill((0,0,0))
+
+        WIN.blit(bg, (0, 0))
 
         for event in pygame.event.get():
 
