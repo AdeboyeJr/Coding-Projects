@@ -1,8 +1,5 @@
 import pygame
 import math
-import os
-
-os.chdir("./Solar System")
 
 pygame.init()
 
