@@ -4,11 +4,15 @@ import pygame, sys, random
 
 class Crosshair(pygame.sprite.Sprite):
 
-    def __init__(self, picture_path):
+    idle = pygame.image.load("crosshair.png")
+
+    shooting = pygame.image.load("shooting.png")
+
+    def __init__(self):
         
         super().__init__()
 
-        self.image = pygame.image.load(picture_path)
+        self.image = Crosshair.idle
    
         self.rect = self.image.get_rect()
 
@@ -59,7 +63,7 @@ background = pygame.image.load("BG.png")
 pygame.mouse.set_visible(False)
 
 # Crosshair
-crosshair = Crosshair("crosshair.png")
+crosshair = Crosshair()
 crosshair_group = pygame.sprite.Group()
 crosshair_group.add(crosshair)
 
@@ -92,6 +96,13 @@ while True:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             crosshair.shoot()
+            crosshair.image = Crosshair.shooting
+
+        if event.type == pygame.MOUSEBUTTONUP:
+
+            crosshair.image = Crosshair.idle
+
+
 
     pygame.display.flip()
     screen.blit(background, (0,0))
