@@ -1,1 +1,1 @@
-*Sprite Demo
+# Sprite Demo
