@@ -1,7 +1,6 @@
 import pygame, sys, random
 
 # General setup
-
 class Crosshair(pygame.sprite.Sprite):
 
     idle = pygame.image.load("crosshair.png")
@@ -57,9 +56,12 @@ clock = pygame.time.Clock()
 # Game Screen
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-background = pygame.image.load("BG.png")
+BG_LIST = [pygame.image.load("BG.png"), pygame.image.load("BG2.png")]
+
+
+CURR_BG = BG_LIST[random.randrange(0,2)]
 pygame.mouse.set_visible(False)
 
 # Crosshair
@@ -105,12 +107,14 @@ while True:
 
 
     pygame.display.flip()
-    screen.blit(background, (0,0))
+    SCREEN.blit(CURR_BG, (0,0))
 
-    screen.blit(text, textRect)
+   
 
-    target_group.draw(screen)
-    crosshair_group.draw(screen)
+    target_group.draw(SCREEN)
+    crosshair_group.draw(SCREEN)
     crosshair_group.update()
+
+    SCREEN.blit(text, textRect)
 
     clock.tick(60)
