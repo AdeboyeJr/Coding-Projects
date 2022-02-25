@@ -13,7 +13,7 @@ The game consists of two classes that inherit from Pygame's Sprite class, Crossh
 
 The Target Class is initialized with an image path and x,y coordinates. Before the game loop begins, Target sprite locations are randomly generated using the randrange function from Python's random module. Instances of the Crosshair and Target classes are added to sprite groups for the screen to render the sprites.
 
-This project implements Python's pygame library and makes use of different assets to reprent game elements and sound effects.
+This project implements Python's pygame library and makes use of different assets to represent game elements and sound effects.
 
 #### Dependencies
 
