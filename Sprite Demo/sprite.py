@@ -85,9 +85,9 @@ while True:
 
     font = pygame.font.SysFont("comicsans", 24)
 
-    text = font.render(f"Hits: {crosshair.hit_count}", False, (255, 255, 255))
+    text = font.render(f"Hits: {crosshair.hit_count}", True, (255, 255, 255))
 
-    textRect = text.get_rect()
+    # textRect = text.get_rect()
 
     for event in pygame.event.get():
         
@@ -115,6 +115,6 @@ while True:
     crosshair_group.draw(SCREEN)
     crosshair_group.update()
 
-    SCREEN.blit(text, textRect)
+    SCREEN.blit(text, (10, 10))
 
     clock.tick(60)
