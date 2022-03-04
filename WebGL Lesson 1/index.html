@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGl: Lesson 1</title>
+    <style>
+        canvas {
+            width: 640vw;
+            height: 480vh;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1216" height="1334"></canvas>
+
+    <script id="vertex-data" type="not-javascript">
+        attribute vec4 vertex_points;
+
+        void main() {
+            gl_Position = vertex_points;
+        }
+    </script>
+
+    <script id="fragment-data" type="not-javascript">
+       precision mediump float;
+
+       void main() {
+           gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+       }
+    </script>
+</body>
+<script type="text/javascript">
+    const canvas = document.querySelector("#canvas");
+    const gl = canvas.getContext('webgl');
+    if (!gl) {
+        console.log('WebGl unavailable');
+    }else {
+        console.log('WebGl is good to go');
+
+      
+    }
+
+    console.log(gl.drawingBufferWidth);
+    console.log(gl.drawingBufferHeight);
+
+    // Define the points in the scene
+    const coordinates = [
+        -0.7, 0.7,
+        0.7, 0.7,
+        -0.7, 0,
+        0.7, 0,
+    ];
+
+    
+    // Create a carry-out container that will pass the shader functions to the GPU
+    const program = gl.createProgram();
+
+ 
+
+    // Create a variable to store the data for our vertex shader
+    const vsSource = document.querySelector("#vertex-data").text;
+
+    // Create a variable to store the data from our fragment shader
+    const fsSource = document.querySelector("#fragment-data").text;
+
+    // Compile the shaders into GLSL
+    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, vsSource);
+    gl.compileShader(vertexShader);
+    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, fsSource);
+    gl.compileShader(fragmentShader);
+
+
+    // Attach the shaders
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+
+    // Link the shaders
+    gl.linkProgram(program);
+
+    // Define the active program of teh GL context
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // Create an empty buffer object ot store the vertex points
+    const pointsBuffer = gl.createBuffer();
+
+    // Connect the empty buffer object tot he Gl context
+    gl.bindBuffer(gl.ARRAY_BUFFER, pointsBuffer);
+
+    // Load the vertices into the GL's connected buffer
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coordinates), gl.STATIC_DRAW);
+
+    // Locate the attribute from the vertex shader source in the program
+    const pointsAttributeLocation = gl.getAttribLocation(program, "vertex_points");
+
+    // Connect the attribute to the points data currently in the buffer object
+
+    let size = 2; // components per iteration (2 because just x,y points)
+    let type = gl.FLOAT; // data is 32 bit floats
+    let normalize = false;
+    let stride = 0; // don't skip indices between coordinate pairs
+    let offset = 0; // start at the beginning of buffer
+
+    gl.vertexAttribPointer(pointsAttributeLocation, size, type, normalize, stride, offset);
+
+    // Send the points data to the GPU
+    gl.enableVertexAttribArray(pointsAttributeLocation);
+
+    // Clear the canvas
+    gl.clearColor(0, 0, 0, 0);
+
+    // Clear the color buffer for a fresh paint
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    // Draw the points on the screen
+    const mode = gl.TRIANGLE_STRIP;
+    const first = 0;
+    const count = 4;
+    gl.drawArrays(mode, first, count);
+
+
+    
+</script>
+</html>
