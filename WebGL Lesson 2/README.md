@@ -4,7 +4,7 @@
 
 #### Description
 
-A project made in WebGl that demonstrates the capabilities of the WebGL API on a web browser. This project showcases the built-in functionality of the API. An extension on the previous lesson where the WebGL pipeline is now extended to accept 3 coordinates for vertices. This is for mapping out points in the third dimension. Color is mapped onto each vertex and the webgl pipeline binds the color with each vertex and interpolates colors inbetween vertices.
+A project made in WebGL that demonstrates the capabilities of the WebGL API on a web browser. This project showcases the built-in functionality of the API. An extension on the previous lesson where the WebGL pipeline is now extended to accept 3 coordinates for vertices. This is for mapping out points in the third dimension. Color is mapped onto each vertex and the webgl pipeline binds the color with each vertex and interpolates colors inbetween vertices.
 
 #### Implementation
 

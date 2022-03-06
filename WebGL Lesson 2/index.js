@@ -152,7 +152,7 @@ function main() {
     // Draw the points on the screen
     const mode = gl.TRIANGLES;
     const first = 0;
-    const count = 18;
+    const count = 18``;
     gl.drawArrays(mode, first, count);
     
 
