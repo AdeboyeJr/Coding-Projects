@@ -74,9 +74,18 @@ function main() {
 
     planeTextureMap.minFilter = THREE.NearestFilter;
 
-    const planeMaterial = new THREE.MeshLambertMaterial({
+    planeTextureMap.anisotropy = gl.getMaxAnisotropy;
+
+    const planeNorm = textureLoader.load('textures/pebbles_normal.png');
+    planeNorm.wrapS = THREE.RepeatWrapping;
+    planeNorm.wrapT = THREE.RepeatWrapping;
+    planeNorm.minFilter = THREE.NearestFilter;
+    planeNorm.repeat.set(16, 16);
+
+    const planeMaterial = new THREE.MeshStandardMaterial({
         map: planeTextureMap,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
+        normalMap: planeNorm
     });
 
     const sphereNormalMap = textureLoader.load('textures/sphere_normal.png');
@@ -93,6 +102,11 @@ function main() {
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(0, 30, 30);
     scene.add(light);
+
+    const ambientColor = 0xffffff;
+    const ambientIntensity = 0.2;
+    const ambientLight = new THREE.AmbientLight(ambientColor, ambientIntensity);
+    scene.add(ambientLight);
     
 
     // MESH
@@ -110,10 +124,13 @@ function main() {
     light.target = plane;
     scene.add(light.target);
   
-   
+
 
     // DRAW
-    function draw() {
+    function draw(time) {
+
+        time *= 0.001;
+
         if (resizeGLToDisplaySize(gl)) {
             const canvas = gl.domElement;
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -128,15 +145,14 @@ function main() {
         sphere.rotation.y += 0.01;
         sphere.rotation.z += 0.01;
 
+        light.position.x = 20*Math.cos(time);
+        light.position.y = 20*Math.sin(time);
+
         gl.render(scene, camera);
         requestAnimationFrame(draw);
     }
 
     requestAnimationFrame(draw);
-
-    // SET ANIMATION LOOP
-
-    // UPDATE RESIZE
 
 
 }

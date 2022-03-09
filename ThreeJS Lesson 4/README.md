@@ -4,7 +4,7 @@
 
 #### Description
 
-Project uses the Three JS module to simplify computer graphics done in WebGL. A 3D scene is rendered onto the canvas and a simple cube geometry is constructed onto the scene. The cube is given a material and mesh for rasterization. A directional light is added to the scene due to the lighting model. All meshes must have a light source in order to be visible in the renderer. The draw function is called recursively and animates the scene. Sphere and plane geometries are included in the scene to accompany the cube. Texture is drawn onto the plane through uv maps.
+This project uses the ThreeJS module to simplify computer graphics done in WebGL. A 3D scene is rendered onto the canvas and the scene includes a simple cube geometry. The cube is given a material and mesh for rasterization. The program adds a directional light to the scene for the lighting model. All meshes must have a light source to be visible in the renderer. The draw function is called recursively and animates the scene. Sphere and plane geometries are included in the scene to accompany the cube. Texture is drawn onto the plane through uv maps. Extra details like backgrounds, normal maps, ambient lights, mipmaps, anisotropy are added to the scene to increase fidelity.
 
 #### Implementation
 
@@ -40,8 +40,6 @@ if (resizeGLToDisplaySize(gl)) {
     camera.updateProjectionMatrix();
 }
 ```
-
-
 
 #### Dependencies
 
