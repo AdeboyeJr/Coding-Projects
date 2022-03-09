@@ -4,7 +4,7 @@
 
 #### Description
 
-A project made in WebGL that demonstrates the capabilities of the WebGL API on a web browser. This project showcases the built-in functionality of the API. An extension on the previous lesson where the WebGL pipeline is now extended to accept 3 coordinates for vertices. This is for mapping out points in the third dimension. Color is mapped onto each vertex and the webgl pipeline binds the color with each vertex and interpolates colors inbetween vertices.
+A project made in WebGL that demonstrates the capabilities of the WebGL API on a web browser. This project showcases the built-in functionality of the API. An extension on the previous lesson where the WebGL pipeline is now extended to accept 3 coordinates for vertices. This is for mapping out points in the third dimension. Color is mapped onto each vertex and the WebGL pipeline binds the color with each vertex and interpolates colors inbetween vertices.
 
 #### Implementation
 
@@ -14,7 +14,7 @@ A constant pipeline is fed data that computes the location of vertices and their
 
 Then, the vertex and fragment shaders are defined and compiled. The vertex shader determines the positioning of the vertices and their color. The program that handles the rendering of the scene is instantiated. Then the arrays for the vertex positions and color are binded with the vertex and fragment shader respectively.
 
-Finally, the program draws the scene by constructing triagnes for each face. Vertices are fed into the WebGL state machine through the buffer and the number of vertices is specified.
+Finally, the program draws the scene by constructing triangles for each face. Vertices are fed into the WebGL state machine through the buffer and the number of vertices is specified.
 
 #### Dependencies
 
