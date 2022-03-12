@@ -57,9 +57,12 @@ var VRButton = {
             var button = document.createElement("button");
             navigator.xr.isSessionSupported('immersive-vr')
                 .then(function(supported) {
-                    if (suported) { EnterVR() }
+                    if (supported) { EnterVR() }
                     else { NotFound(); }
                 });
+
+            button.setAttribute("id", "btn");
+            return button;
         } else {
             if (window.isSecureContext === false){
                 console.log('WebXR needs HTTPS');
