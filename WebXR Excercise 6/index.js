@@ -77,10 +77,27 @@ function onRequestSession() {
 
 function onSessionStarted() {
     // handle the XR session once it has been created
+    console.log('starting session');
+
+    btn.removeEventListener('click', onRequestSession);
+    btn.addEventListener('click', endXRSession);
+
+    btn.innerHTML = "STOP AR";
+
+    xrSession = session;
+    setupWebGLLayer()
+        .then(() => {
+            renderer.xr.setReferenceSpaceType('local');
+        })
 }
 
 function setupWebGLLayer() {
     // connect the WebGL context to the XR session
+    return gl.makeXRCompatible().then(() => {
+        xrSession.updateRenderState(
+            {baseLayer: new XRWebGLLayer(xrSession, gl)}
+        );
+    });
 }
 
 function animate() {
